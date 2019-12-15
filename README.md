@@ -4,7 +4,7 @@
 2 projets Maven composent ce projet OCR. Chacun se trouve dans un répertoire dédié:
 
 1. Le répertoire 'API' pour l'API REST,
-2. Le répoertoire 'Batch-WebApp' contient le batch et la webapp (projet multimodules maven)
+2. Le répertoire 'Batch-WebApp' contient le batch et la webapp (projet multimodules maven)
 
 ## Documentation
 Un fichier README.md est présent dans le répertoire de chaque projet.
