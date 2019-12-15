@@ -48,6 +48,10 @@ Pre-requis: l'API doit être en cours d'exécution.
 
 ## Configuration
 
+#### Port d'écoute
+Il est indiqué ligne #2, dans le fichier `application.properties`. Sa valeur par défaut est 9991.
+
+
 ### Paramètrage des web clients
 Les informations nécessaires à l'utilisation de l'API REST sont indiquées dans le fichier `application.properties`.
 
@@ -59,7 +63,10 @@ Pre-requis: l'API doit être en cours d'exécution.
 1. Depuis le répertoire Batch-Webapp, lancer la commande `mvn install`
 2. A la fin de la compilation, se placer dans le répertoire webapplication puis lancer la commande `mvn spring-boot:run` 
 
-## Test de l'application
+L'application est alors exposée à l'adresse [http://localhost:9991](http://localhost:9991)
+
+## Fonctionnalités
+
 Le mode non connecté permet d'accéder aux fonctionnalités suivantes:
 - Recherche d'ouvrages par mot clé
 - Connexion 
