@@ -1,0 +1,149 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="copy">
+    <title>Bibliothèque de Toulon</title>
+
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <meta
+            content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no"
+            id="Viewport" name="viewport"/>
+
+    <!-- Bootstrap -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <!-- VertiGo! -->
+    <link rel="stylesheet" th:href="@{/css/p7-styles.css}"/>
+
+    <link crossorigin="" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          rel="stylesheet"/>
+
+    <link href="/apple-icon-57x57.png" rel="apple-touch-icon" sizes="57x57">
+    <link href="/apple-icon-60x60.png" rel="apple-touch-icon" sizes="60x60">
+    <link href="/apple-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
+    <link href="/apple-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
+    <link href="/apple-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
+    <link href="/apple-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
+    <link href="/apple-icon-144x144.png" rel="apple-touch-icon" sizes="144x144">
+    <link href="/apple-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
+    <link href="/apple-icon-180x180.png" rel="apple-touch-icon" sizes="180x180">
+    <link href="/android-icon-192x192.png" rel="icon" sizes="192x192" type="image/png">
+    <link href="/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+    <link href="/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
+    <link href="/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+    <link href="/manifest.json" rel="manifest">
+    <meta content="#ffffff" name="msapplication-TileColor">
+    <meta content="/ms-icon-144x144.png" name="msapplication-TileImage">
+    <meta content="#ffffff" name="theme-color">
+
+    <script crossorigin="anonymous" th:src="@{/js/p7.js}"></script>
+
+    <script
+            crossorigin="anonymous"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <script crossorigin="anonymous"
+            integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+-->
+    <!--<script crossorigin=""-->
+            <!--integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="-->
+            <!--src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>-->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]
+              <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+              <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+            <![endif]-->
+</head>
+
+<body>
+
+<div class="container" style="display:inline" th:fragment="copy">
+    <nav class="navbar navbar-expand-md navbar-light bg-white sticky-top">
+        <div>
+            <a class="navbar-brand " href="#">Bibliothèque<br>de Toulon</a>
+            <img class="navbar-brand" style="align-content: flex-start" th:src="@{/images/p7-logo_86x83.png}"/>
+        </div>
+        <button aria-controls="navbarElements" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-target="#navbarElement" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarElements">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"
+                    th:class="${#httpServletRequest.getServletPath()}=='/'? 'nav-item active' : 'nav-item'">
+                    <a class="nav-link" href="#" th:href="@{/}">Accueil<span class="sr-only">(current)</span></a>
+                </li>
+                <!--<li class="nav-item active"-->
+                    <!--th:class="${#httpServletRequest.getServletPath()}=='/documents'? 'nav-item active' : 'nav-item'">-->
+                    <!--<a class="nav-link" href="#" th:href="@{/documents}">Recherche</a>-->
+                <!--</li>-->
+                <!--<li class="nav-item active"-->
+                    <!--th:class="${#httpServletRequest.getServletPath()}=='/info'? 'nav-item active' : 'nav-item'">-->
+                    <!--<a class="nav-link" href="#" th:href="@{/info}">Infos pratiques</a>-->
+                <!--</li>-->
+
+
+                <li class="nav-item active" sec:authorize="isAuthenticated()"
+                    th:class="${#httpServletRequest.getServletPath()}=='/lendings'? 'nav-item active' : 'nav-item'">
+                    <a class="nav-link" href="#" th:href="@{/lendings}">Mes prêts</a>
+                </li>
+
+                <li class="nav-item"
+                    sec:authorize="!isAuthenticated()"
+                    th:class="${#httpServletRequest.getServletPath()}=='/login'? 'nav-item active' : 'nav-item'">
+                    <a class="nav-link" th:href="@{/login}">Se connecter</a>
+                </li>
+
+                <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                       data-toggle="dropdown"
+                       href="#" id="dropdown01">Mon compte</a>
+                    <div aria-labelledby="dropdown01" class="dropdown-menu">
+                        <a class="dropdown-item" href="#" th:href="@{/logout}">Déconnexion</a>
+                        <a class="dropdown-item" href="#" th:href="@{/profil}">Mon profil</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                       data-toggle="dropdown" href="http://example.com" id="dropdown02">Administration</a>
+                    <div aria-labelledby="dropdown01" class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0" method="post" th:action="@{/search}">
+                <input aria-label="Rechercher" class="form-control mr-sm-2" name="criteria" placeholder="titre ou auteur"
+                       type="text">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+            </form>
+        </div>
+    </nav>
+</div>
+
+<h1 th:text="${#httpServletRequest.contextPath}">Coucou!!</h1>
+
+</body>
+</html>

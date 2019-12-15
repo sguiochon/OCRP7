@@ -1,0 +1,143 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="header :: copy"></head>
+
+<body>
+
+<div class="mx-auto" style="width: 600px;">
+
+    <div th:if="${lendings}!=null">
+        <h3>Mes emprunts</h3>
+        <h1>Liste des ouvrages empruntés</h1>
+
+        <p>&nbsp;</p>
+        <h3 th:if="${lendings.size()}==0">Vous n'avez effectué aucun prêt...</h3>
+
+        <div th:if="${lendings.size()}!=0">
+            <form autocomplete="off" id="searchSiteForm" method="get" th:action="@{/lendings}">
+
+                <nav aria-label="Page navigation example" th:if="${nav}!=null">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <button class="page-link" name="p" th:type="${nav.previous}==null?'text':'submit'"
+                                    th:value="${nav.previous}==null?0:${nav.previous.number}"
+                                    type="submit" value="0">&laquo;
+                            </button>
+                        </li>
+                        <li class="page-item" th:each="item : ${nav.items}">
+                            <button class="page-link" name="p"
+                                    th:class="${item.isCurrent()}==true?'btn btn-primary':'page-link'"
+                                    th:text="${item.number}+1" th:value="${item.number}" type="submit"
+                                    value="1"></button>
+                        </li>
+                        <li class="page-item">
+                            <button class="page-link" name="p" th:type="${nav.next}==null?'text':'submit'"
+                                    th:value="${nav.next}==null?0:${nav.next.number}"
+                                    type="submit" value="1">&raquo;
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+
+                <th:block th:each="lending : ${lendings}">
+                    <div class="card" style="width: 100%">
+                        <div class="card-body">
+                            <h5 class="card-title"
+                                th:text="${lending.document.titre} + ' - ' +  ${lending.document.auteur}">Titre -
+                                Auteur</h5>
+                            <img alt="Card image cap" class="float-left"
+                                 style="height:100px;padding-right:8px"
+                                 th:src="@{'/images/{name}'(name=${lending.document.image})}">
+                            <!-- th:src="${document.image2}"> -->
+                            <p class="card-text" th:text="${lending.document.description}">Description</p>
+
+                            <!--<button class="btn btn-primary" style="margin:1px" type="button">-->
+                            Emprunté le: <span class="badge badge-light" th:text="${#temporals.format(lending.startDate, 'E dd MMM yyyy')}">2019-10-12</span>
+                            A rendre avant: <span th:class="${lending.overDue}?'badge badge-danger':'badge badge-light'"  th:text="${#temporals.format(lending.endDate, 'E dd MMM yyyy')}">2019-11-12</span>
+                            <button class="btn btn-primary"
+                                    data-target="#reservationModal"
+                                    data-toggle="modal"
+                                    th:data-documenttitle="${lending.document.titre}"
+                                    th:data-lendingid="${lending.lendingId}"
+                                    th:if="${lending.extendable}"
+                                    type="button">Prolonger
+                            </button>
+                            <!--</button>-->
+
+
+                        </div>
+                        <p/>
+                    </div>
+                </th:block>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="reservationModal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Réservation d'un exemplaire</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Confirmez-vous la prolongation de votre prêt ?
+                <input class="form-control" id="recipient-name" name="id" type="hidden">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Annuler</button>
+                <button class="btn btn-primary" onclick="extendLending();" type="button">Confirmer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br/>
+<script>
+    $('#reservationModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var lendingId = button.data('lendingid'); // Extract info from data-* attributes
+        var documentTitle = button.data('documenttitle');
+        var modal = $(this);
+        modal.find('.modal-title').text(documentTitle);
+        modal.find('.modal-body input').val(lendingId)
+    });
+
+    function extendLending() {
+        var id = $("#reservationModal").find("#recipient-name").val();
+        console.log("documentId: " + id);
+        $.ajax({
+            url: 'extendLending',
+            contentType: 'application/json',
+            dataType: 'text',
+            data: '{"id":' + id + '}',
+            type: 'POST',
+            error: function (jqXHR,error, errorThrown) {
+                jsonValue = jQuery.parseJSON( jqXHR.responseText );
+                $("#reservationModal").find('.modal-body').html("<div class='alert alert-danger'>Erreur! " + jsonValue.message + "</div>");
+                $("#reservationModal").find('.btn-primary').hide();
+                console.log("erreur...." + jsonValue.message)
+            },
+            success: function (result) {
+                $("#reservationModal").modal("hide");
+                console.log("reservation effectuee...." + result);
+                location.reload();
+            }
+        });
+    }
+</script>
+
+</body>
+
+<footer th:replace="footer :: copy"></footer>
+
+</html>
