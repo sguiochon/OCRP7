@@ -26,7 +26,7 @@ Deux profils spring sont utilisables:
 
 Le choix du mode est réalisé dans le fichier `applications.properties`, ligne #1
 
-Si le profil `prod` est choisi, il convient d'indiquer les informations permettant la connexion à un serveur SMTP dans les lignes 42 à 50 du fichier `application.properties`. 
+Si le profil `prod` est choisi, il convient d'indiquer les informations permettant la connexion à un serveur SMTP dans les lignes 58 à 68 du fichier `application.properties`. 
 
 ### Choix de la date de retour des prêts
 Le fichier `application.properties` permet de spécifier la date de limite de retour (ligne #4, propriété `batch.findByEndDateBefore.forcedValue`) permettant de déclencher l'envoi d'email. Si aucune date n'est spécifiée, la date courante est utilisée (c'est le fonctionnement nominal de l'application).
