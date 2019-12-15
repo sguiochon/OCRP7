@@ -29,8 +29,8 @@ Le choix du mode est réalisé dans le fichier `applications.properties`, ligne 
 Si le profil `prod` est choisi, il convient d'indiquer les informations permettant la connexion à un serveur SMTP dans les lignes 58 à 68 du fichier `application.properties`. 
 
 ### Choix de la date de retour des prêts
-Le fichier `application.properties` permet de spécifier la date de limite de retour (ligne #4, propriété `batch.findByEndDateBefore.forcedValue`) permettant de déclencher l'envoi d'email. Si aucune date n'est spécifiée, la date courante est utilisée (c'est le fonctionnement nominal de l'application).
-Il est néanmoins possible de choisir une date (pour un 'rattrapage' ou pour effectuer des tests).
+Le fichier `application.properties` permet de spécifier une date limite de retour des prêts (ligne #4, propriété `batch.findByEndDateBefore.forcedValue`). Si aucune date n'est spécifiée, la date courante est utilisée (c'est le fonctionnement nominal de l'application).
+En revanche, si une date est renseignée (ce qui est le cas dans le fichier), il est alors possible de lancer un traitement dans le cas d'un 'rattrapage' ou pour effectuer des tests.
 
 ### Paramètrage des web clients
 Les informations nécessaires à l'utilisation de l'API REST sont indiquées dans le fichier `application.properties`.
@@ -40,8 +40,8 @@ La configuration des logs (niveau et appenders) est réalisée dans le fichier `
 
 ## Exécution
 Pre-requis: l'API doit être en cours d'exécution.
-1. Depuis le répertoire Batch-Webapp, lancer la commande `mvn install`
-2. A la fin de la compilation, se placer dans le répertoire batchprocessor puis lancer la commande `mvn spring-boot:run` 
+1. Depuis le répertoire `Batch-Webapp`, lancer la commande `mvn install`
+2. A la fin de la compilation, se placer dans le répertoire `batchprocessor` puis lancer la commande `mvn spring-boot:run` 
 
 
 # L'application web
@@ -60,8 +60,8 @@ La configuration des logs (niveau et appenders) est réalisée dans le fichier `
 
 ## Exécution
 Pre-requis: l'API doit être en cours d'exécution.
-1. Depuis le répertoire Batch-Webapp, lancer la commande `mvn install`
-2. A la fin de la compilation, se placer dans le répertoire webapplication puis lancer la commande `mvn spring-boot:run` 
+1. Depuis le répertoire `Batch-Webapp`, lancer la commande `mvn install`
+2. A la fin de la compilation, se placer dans le répertoire `webapplication` puis lancer la commande `mvn spring-boot:run` 
 
 L'application est alors exposée à l'adresse [http://localhost:9991](http://localhost:9991)
 
@@ -71,12 +71,9 @@ Le mode non connecté permet d'accéder aux fonctionnalités suivantes:
 - Recherche d'ouvrages par mot clé
 - Connexion 
 
-Un compte de test est disponible:
-
-- Identifiant: harry@hell.com
-- Mot de passe: 1234
+Un compte de test est disponible disposant de l'identifiant **harry@hell.com** et du mot de passe **1234**.
 
 En mode connecté, les fonctionnalités suivantes sont accessibles:
-- visualisation du nombre d'exemplaires disponibles au prêt
+- visualisation du nombre d'exemplaires disponibles au prêt pour un document donné
 - consultation des prêts en cours
-- extension d'un prêt
+- extension d'un prêt (1 seule fois)
