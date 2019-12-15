@@ -1,16 +1,50 @@
 HELP.md
 .mvn
-/**/target/
+
+API/target/classes/*
+API/target/generated-sources/*
+API/target/generated-test-sources/*
+API/target/maven-archiver/*
+API/target/maven-status/*
+API/target/surefire-reports/*
+API/target/test-classes/*
+
+Batch-Webapp/batchprocessor/target/classes/*
+Batch-Webapp/batchprocessor/target/generated-sources/*
+Batch-Webapp/batchprocessor/target/generated-test-sources/*
+Batch-Webapp/batchprocessor/target/maven-archiver/*
+Batch-Webapp/batchprocessor/target/maven-status/*
+Batch-Webapp/batchprocessor/target/surefire-reports/*
+Batch-Webapp/batchprocessor/target/test-classes/*
+
+Batch-Webapp/model-library/target/classes/*
+Batch-Webapp/model-library/target/generated-sources/*
+Batch-Webapp/model-library/target/generated-test-sources/*
+Batch-Webapp/model-library/target/maven-archiver/*
+Batch-Webapp/model-library/target/maven-status/*
+Batch-Webapp/model-library/target/surefire-reports/*
+Batch-Webapp/model-library/target/test-classes/*
+
+Batch-Webapp/webclient-library/target/classes/*
+Batch-Webapp/webclient-library/target/generated-sources/*
+Batch-Webapp/webclient-library/target/generated-test-sources/*
+Batch-Webapp/webclient-library/target/maven-archiver/*
+Batch-Webapp/webclient-library/target/maven-status/*
+Batch-Webapp/webclient-library/target/surefire-reports/*
+Batch-Webapp/webclient-library/target/test-classes/*
+
+Batch-Webapp/webapplication/target/classes/*
+Batch-Webapp/webapplication/target/generated-sources/*
+Batch-Webapp/webapplication/target/generated-test-sources/*
+Batch-Webapp/webapplication/target/maven-archiver/*
+Batch-Webapp/webapplication/target/maven-status/*
+Batch-Webapp/webapplication/target/surefire-reports/*
+Batch-Webapp/webapplication/target/test-classes/*
+Batch-Webapp/webapplication/target/web-0.0.1-SNAPSHOT/*
+
+
 #!.mvn/wrapper/maven-wrapper.jar
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
 
 ### IntelliJ IDEA ###
 /**/.idea
@@ -18,13 +52,4 @@ HELP.md
 /**/*.iml
 /**/*.ipr
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-/build/
 
-### VS Code ###
-.vscode/
