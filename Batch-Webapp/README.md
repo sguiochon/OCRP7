@@ -36,7 +36,7 @@ Il est néanmoins possible de choisir une date (pour un 'rattrapage' ou pour eff
 Les informations nécessaires à l'utilisation de l'API REST sont indiquées dans le fichier `application.properties`.
 
 ### Log
-La configuration des logs (niveau et appenders) est réalisée dans le fichier `logback.xml`. Par défaut, l'enregistrment dans un fichier est désactivé (ligne #50).
+La configuration des logs (niveau et appenders) est réalisée dans le fichier `logback.xml`. Par défaut, l'enregistrement dans un fichier est désactivé (ligne #50).
 
 ## Exécution
 Pre-requis: l'API doit être en cours d'exécution.
