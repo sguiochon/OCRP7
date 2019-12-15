@@ -17,8 +17,8 @@ public class Copy {
 
     @Enumerated(value = EnumType.STRING)
     private CopyStatusEnum status;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    //@JsonIgnore
     private Document document;
 
     @OneToOne(mappedBy = "copy")

@@ -17,6 +17,9 @@ import sam.biblio.model.library.Member;
 
 import java.util.Map;
 
+/**
+ * Seconde étape du job: notification de chaque membre.
+ */
 @Component
 public class StepNotifyMember implements Tasklet, StepExecutionListener {
 

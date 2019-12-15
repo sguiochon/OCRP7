@@ -27,6 +27,9 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Première étape du job: recherche des prêts dont la date de fin est >= à la date seuil puis aggrégation par membre.
+ */
 @Component
 public class StepGetLendings implements Tasklet, StepExecutionListener {
 
@@ -78,6 +81,7 @@ public class StepGetLendings implements Tasklet, StepExecutionListener {
     }
 
     private void aggregateMembers(EntityModel<Lending> lendingResource) {
+
         Link memberLink = lendingResource.getLink("member").get();
         EntityModel<Member> member = memberWebClient.findByResourceUrl(memberLink.getHref());
 
