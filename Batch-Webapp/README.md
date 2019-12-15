@@ -15,7 +15,7 @@ Le module de cette application est dans le répertoire `batchprocessor`.
 ### Mode d'exécution
 L'application dispose d'un scheduler interne qui permet de lancer le traitement à la fréquence souhaitée. Son fonctionnement normal est donc celui d'un daemon (fonctionnant en permanence).
 
-La configuration du scheduler est réalisée via la ligne #38 du fichier `application.properties`. Si nécessaire, se référer à la [documentation Spring](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/scheduling/annotation/Scheduled.html)
+La configuration du scheduler est réalisée via la ligne #51 du fichier `application.properties` via la propriété `application.cron.pattern`. La valeur fournie par défaut permet d'exécuter le traitement toutes les 30s. Un exemple est donné pour un traitement une fois par jour. Si nécessaire, se référer à la [documentation Spring](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/scheduling/annotation/Scheduled.html).
 
 ## Configuration
 
@@ -29,7 +29,7 @@ Le choix du mode est réalisé dans le fichier `applications.properties`, ligne 
 Si le profil `prod` est choisi, il convient d'indiquer les informations permettant la connexion à un serveur SMTP dans les lignes 42 à 50 du fichier `application.properties`. 
 
 ### Choix de la date de retour des prêts
-Le fichier `application.properties` permet de spécifier la date de limite de retour (ligne #4) permettant de déclencher l'envoi d'email. Si aucune date n'est spécifiée, la date courante est utilisée (c'est le fonctionnement nominal xe l'application).
+Le fichier `application.properties` permet de spécifier la date de limite de retour (ligne #4, propriété `batch.findByEndDateBefore.forcedValue`) permettant de déclencher l'envoi d'email. Si aucune date n'est spécifiée, la date courante est utilisée (c'est le fonctionnement nominal de l'application).
 Il est néanmoins possible de choisir une date (pour un 'rattrapage' ou pour effectuer des tests).
 
 ### Paramètrage des web clients
