@@ -41,8 +41,12 @@ public class EmailMemberNotifier implements MemberNotifier {
         message.append("Ouvrage(s) concerné(s):\r\n");
 
         for (Lending l : member.getLendings()){
-            message.append("\t").append(l.getCopy().getDocument().getTitle()).append(", date de retour prévue: ").append(l.getEnd());
+            message.append("\t").append(l.getCopy().getDocument().getTitle()).append(", date de retour prévue: ").append(l.getEnd()).append("\n");
         }
+
+        message.append("\nMerci de rapporter le(s) ouvrage(s) indiqué(s) dans les plus brefs délais.");
+        message.append("\n\nCordialement,\nLe service des prêts de la Bibliothèque Municipale de Toulon.");
+
 
         final SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(recipientAddress);
